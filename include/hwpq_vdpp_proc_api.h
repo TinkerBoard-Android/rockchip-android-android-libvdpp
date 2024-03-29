@@ -6,7 +6,7 @@
 #ifndef __HWPQ_VDPP_PROC_API_H__
 #define __HWPQ_VDPP_PROC_API_H__
 
-typedef void * rk_vdpp_context;
+typedef void* rk_vdpp_context;
 
 /* hwpq vdpp color format definition */
 #define VDPP_FRAME_FMT_COLOR_MASK    (0x000f0000)
@@ -40,6 +40,12 @@ typedef enum {
     VDPP_FMT_AB30,          /* ABGR2101010, reserved */
     VDPP_FMT_RGB_MAX,       /* the max RGB format value, please DO NOT use this item! */
 } vdpp_frame_format;
+
+typedef enum {
+    VDPP_RUN_MODE_UNSUPPORTED = -1,
+    VDPP_RUN_MODE_VEP         = 0,
+    VDPP_RUN_MODE_HIST        = 1,
+} VdppRunMode;
 
 #define VDPP_HIST_LENGTH        (10240)
 
@@ -127,7 +133,7 @@ extern "C"
 #endif
 
 int hwpq_vdpp_init(rk_vdpp_context *p_ctx_ptr);
-int hwpq_vdpp_check_work_mode(rk_vdpp_proc_params *p_proc_param);
+int hwpq_vdpp_check_work_mode(rk_vdpp_context ctx, rk_vdpp_proc_params *p_proc_param);
 int hwpq_vdpp_proc(rk_vdpp_context ctx, rk_vdpp_proc_params *p_proc_param);
 int hwpq_vdpp_deinit(rk_vdpp_context ctx);
 
